@@ -3,6 +3,8 @@
 ####Table of Contents
 
 1. [Description](#description)
+	1.[Github](#github.com)
+	2.[Gitlab](#gitlab)
 2. [How to use](#how-to-use)
 3. [OS Support](#support)
 4. [Todo](#todo)
