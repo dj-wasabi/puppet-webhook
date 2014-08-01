@@ -8,7 +8,6 @@
 # No requirements.
 #
 # - puppetlabs-operations/puppet-bundler
-# - puppetlabs/puppetlabs-ruby
 #
 # === Parameters
 #
@@ -33,7 +32,21 @@
 # The name of the repository where the 'hieradata'
 # is stored.
 #
-# [**]
+# === Example
+#
+#  class { 'webhook':
+#    webhook_port    => '82',
+#    repo_puppetfile => "puppetfilerepo",
+#    repo_hieradata  => "puppethieradata",
+#  }
+#
+# === Authors
+#
+# Author Name: ikben@werner-dijkerman.nl
+#
+# === Copyright
+#
+# Copyright 2014 Werner Dijkerman
 #
 class webhook (
   $webhook_home    = $webhook::params::homedir,
