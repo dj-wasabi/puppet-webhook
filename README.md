@@ -1,4 +1,4 @@
-#puppet-zabbix
+#puppet-webhook
 
 ####Table of Contents
 
