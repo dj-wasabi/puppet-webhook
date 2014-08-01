@@ -1,6 +1,0 @@
-.*.sw?
-pkg
-spec/fixtures
-.vagrant
-log
-
