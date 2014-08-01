@@ -1,0 +1,44 @@
+{
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "name": "wdijkerman-webhook",
+  "version": "0.0.1",
+  "summary": "Installing simple sinatra webhook for git pushes."
+  "author": "Werner Dijkerman",
+  "description": "This will install an basic sinatra webapp which will be listening for JSON post information when something is pushed to an central git repository. You'll need to configure this instance yourself by setting an webhook for every repsotiroy. When correct url is provided and information is pushed to this central server, it will send JSON information to this server and it will execute an r10k call. Puppet modules or environments will be created or updated."
+  "dependencies": [
+    {
+      "name": "ploperations/bundler",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "source": "https://github.com/dj-wasabi/puppet-webhook.git",
+  "project_page": "http://forge.puppetlabs.com/wdijkerman/webhook",
+  "license": "Apache Version 2.0",
+  "operatingsystem_support": [
+       {
+           "operatingsystem":"RedHat",
+           "operatingsystemrelease":[ "5.0", "6.0" ]
+       },
+       {
+           "operatingsystem":"OracleLinux",
+           "operatingsystemrelease":[ "5.0", "6.0" ]
+       },
+       {                                            
+           "operatingsystem":"Scientific",
+           "operatingsystemrelease":[ "5.0", "6.0" ]
+       },                                           
+       {
+           "operatingsystem":"CentOS",
+           "operatingsystemrelease":[ "5.0", "6.0" ]
+       },
+       {
+           "operatingsystem":"Debian",
+           "operatingsystemrelease":[ "6.0", "7.0" ]
+       }
+   ]
+}

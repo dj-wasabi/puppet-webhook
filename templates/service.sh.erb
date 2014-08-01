@@ -1,0 +1,95 @@
+#!/bin/bash
+#
+# Daemon Name: webhook
+#  
+# chkconfig: - 58 74
+# description: This will start an Sinatra webhook via thin
+#
+
+# Sourcing the linux functions file
+source /etc/init.d/functions
+
+# Set some variables
+WEBHOOK_HOME=<%= @webhook_home %>
+WEBHOOK_PORT=<%= @webhook_port %>
+WEBHOOK_LOG="/var/log/webhook.log"
+WEBHOOK_PID="/var/run/webhook_thin.pid"
+INIT_PID="/var/run/webhook.pid"
+LOCKFILE="/var/lock/subsys/webhook"
+RUBY_SMALL=$(facter rubyversion | cut -c1-3)
+GEM_HOME="<%= @webhook_home %>/vendor/bundle/ruby/${RUBY_SMALL}/gems"
+GEM_PATH="<%= @webhook_home %>/vendor/bundle/ruby/${RUBY_SMALL}"
+PATH="${PATH}:${GEM_PATH}/bin"
+
+# These are our own functions for this script.
+start() { 
+    # Start our daemon
+    echo -n "Starting webhook: "
+    thin start --environment production --port ${WEBHOOK_PORT} -P ${WEBHOOK_PID}  -l ${WEBHOOK_LOG} -c ${WEBHOOK_HOME} -d -q
+    RETVAL=$?
+
+    #If all is well touch the lock file
+    [ $RETVAL -eq 0 ] && touch ${LOCKFILE}
+    success
+    echo
+    
+    PID_NUM=$(ps -ef | grep 'thin server' | grep ${WEBHOOK_PORT} | grep -v grep | awk '{print $2}')
+    echo ${PID_NUM} > ${INIT_PID}
+    return $RETVAL
+}
+
+stop() {
+    # First get if pid file exists. If so, we can assume the app is still working.
+    if [ -f ${INIT_PID} ]
+        then    PID_NUM=$(cat ${INIT_PID})
+        else    PID_NUM=$(ps -ef | grep 'thin server' | grep ${WEBHOOK_PORT} | grep -v grep | awk '{print $2}')
+                # So check if we have an pid. Maybe the pid file was not removed when stopping (Or killing)
+                if [[ ${PID_NUM} == '' ]]
+                    then    echo "Is already stopped."
+                            # When the application is already stopped and we execute an "restart", don't exit because
+                            # the app is stopped. Otherwise just exit.
+                            if [[ $1 != "restart" ]]
+                                then    exit 0
+                            fi
+                fi
+    fi
+
+    # So if PID_NUM is something else than '' (Nothing) we can stop thin 
+    # Otherwise we have an ruby stacktrace (ugly).
+    if  [[ ${PID_NUM} != '' ]]
+        then    echo -n "Stopping webhook: "
+                thin stop -P ${WEBHOOK_PID} -q
+                RETVAL=$?
+
+                if [[ ${RETVAL} == 0 ]]
+                    then    success
+                            rm -f ${LOCKFILE} ${INIT_PID}
+                    else    failure
+                fi
+                echo
+                return $RETVAL
+    
+    fi
+}
+
+# This is the case
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop restart
+        start
+        ;;
+    status)
+        status webhook
+        ;;
+    *)
+
+        ''
+esac
+
+exit ${RETVAL}
