@@ -17,5 +17,11 @@ class webhook::params {
   $owner    = 'root'
   $group    = 'root'
 
+  # OS specific stuff
+  if $::osfamily == 'RedHat' {
+    $ruby_dev = 'ruby-devel'
+  } elsif $::osfamily == 'Debian' {
+    $ruby_dev = 'ruby-dev'
+  }
 
 }

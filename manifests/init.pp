@@ -32,6 +32,9 @@
 # The name of the repository where the 'hieradata'
 # is stored.
 #
+# [*ruby_dev*]
+# The package name of ruby-devel (or when debian: ruby-dev)
+#
 # === Example
 #
 #  class { 'webhook':
@@ -55,6 +58,7 @@ class webhook (
   $webhook_group   = $webhook::params::group,
   $repo_puppetfile = undef,
   $repo_hieradata  = undef,
+  $ruby_dev        = $webhook::params::ruby_dev,
 ) inherits webhook::params {
 
   exec { 'create_webhook_homedir':
@@ -113,11 +117,11 @@ class webhook (
   file { '/etc/init.d/webhook':
     ensure  => present,
     mode    => '0775',
-    content => template('webhook/service.sh.erb'),
+    content => template("webhook/service.${::osfamily}.erb"),
   }
 
-  if ! defined(Package['ruby-devel']) {
-    package { 'ruby-devel':
+  if ! defined(Package[$ruby_dev]) {
+    package { $ruby_dev:
       ensure   => 'installed',
     }
   }
@@ -131,7 +135,7 @@ class webhook (
       File["${webhook_home}/config.ru"],
       File["${webhook_home}/Gemfile"],
       File["${webhook_home}/Gemfile.lock"],
-      Package['ruby-devel'],
+      Package[$ruby_dev],
     ],
   }
 

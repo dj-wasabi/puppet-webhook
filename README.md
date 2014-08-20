@@ -34,30 +34,15 @@ class { 'webhook': }
 
 This will install an basic webapp which will be running as user root on port 81. The sinatra app is only available when one "JSON" information is posted to "http://fqdn:81/payload". The port can be overriden using the "webhook_port" parameter.
 
-
 You can override this module with the following parameters:
 
-###webhook_home
-As default, this will be installed on '/opt/webhook'. You can override it by setting an different value
-
-###webhook_port
-On which port it is listening for requests. Default it will run on port 81. You can use this to any other port.
-When changing the port higher than 1023, this app still runs as root. (See todo)
-
-###webhook_owner
-The owner of this service/script. Default it has 'root' as owner. 
-
-###webhook_group
-The group of this service/script. Default it is set to 'root'.
-
-###repo_puppetfile
-The name of the repository where the 'Puppetfile' is stored.
-Default is 'undef' but this one needs to be supplied when you want this to work correctly.
-
-###repo_hieradata
-The name of the repository where the 'hieradata' is stored.
-Default is 'undef' as not everyone is using hiera.
-
+* `webhook_home`: As default, this will be installed on '/opt/webhook'. You can override it by setting an different value
+* `webhook_port`: On which port it is listening for requests. Default it will run on port 81. You can use this to any other port. When changing the port higher than 1023, this app still runs as root. (See todo)
+* `webhook_owner`: The owner of this service/script. Default it has 'root' as owner. 
+* `webhook_group`: The group of this service/script. Default it is set to 'root'.
+* `repo_puppetfile`: The name of the repository where the 'Puppetfile' is stored. Default is 'undef' but this one needs to be supplied when you want this to work correctly.
+* `repo_hieradata`: The name of the repository where the 'hieradata' is stored. Default is 'undef' as not everyone is using hiera.
+* `ruby_dev`: The ruby dev package. RH: ruby-devel, Debian: ruby-dev
 
 ##Support
 
@@ -66,7 +51,6 @@ The module is only supported on:
   - CentOS 6
   - Debian 7
   - OracleLinux 6
-
 
 ##Todo
 The following is an overview of todo actions:
