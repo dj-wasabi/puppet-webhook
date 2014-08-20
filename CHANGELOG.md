@@ -6,7 +6,8 @@ Version (Release date)
 
 0.0.2   (2014-08-20)
 
-  * Small change for ruby-dev package(debian)
+  * Package ruby-devel not available on Ubuntu. Fixed.
+  * Added correct init script for debian/ubuntu systems.
 
 0.0.1  (2014-08-01)
  
