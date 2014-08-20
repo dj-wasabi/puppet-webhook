@@ -1,5 +1,5 @@
 name    'wdijkerman-webhook'
-version '0.0.1'
+version '0.0.2'
 source 'https://github.com/dj-wasabi/puppet-webhook.git'
 author 'Werner Dijkerman'
 license 'Apache Version 2.0'
