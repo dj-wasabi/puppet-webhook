@@ -21,7 +21,7 @@ post '/payload' do
   logger.info("branch = #{branchName}")
 
   # Check if repo_name is 'puppetfile'
-  if repo_name == #{repo_puppetfile} <% if @repo_hieradata %>|| repo_name == #{repo_hieradata}<% end %>
+  if #{repo_name} == #{repo_puppetfile} <% if @repo_hieradata %>|| #{repo_name} == #{repo_hieradata}<% end %>
     logger.info("Deploy r10k for this environment #{branchName}")
     deployEnv(branchName)
   else
