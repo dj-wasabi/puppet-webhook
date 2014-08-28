@@ -6,7 +6,7 @@
     }
   ],
   "name": "wdijkerman-webhook",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "summary": "Installing simple sinatra webhook for git pushes.",
   "author": "Werner Dijkerman",
   "description": "This will install an basic sinatra webapp which will be listening for JSON post information when something is pushed to an central git repository. You will need to configure this instance yourself by setting an webhook for every repository. When correct url is provided and information is pushed to this central server, it will send JSON information to this server and it will execute an r10k call. Puppet modules or environments will be created or updated.",
