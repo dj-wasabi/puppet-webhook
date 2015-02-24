@@ -2,6 +2,8 @@
 
 Below an overview of all changes in the releases.
 
+# lots of stuff
+
 0.0.4 
 
  * Bug with init script, osfamily
