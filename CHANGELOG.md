@@ -2,6 +2,10 @@
 
 Below an overview of all changes in the releases.
 
+0.0.4 
+
+ * Bug with init script, osfamily
+
 Version (Release date)
 
 0.0.3   (2014-08-28)
