@@ -119,7 +119,7 @@ class webhook (
   file { '/etc/init.d/webhook':
     ensure  => present,
     mode    => '0775',
-    content => template("webhook/service.${::osfamily}.erb"),
+    content => template("webhook/service.${osfamily}.erb"),
   }
 
   if ! defined(Package[$ruby_dev]) {
