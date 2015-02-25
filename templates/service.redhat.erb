@@ -25,7 +25,7 @@ PATH="${PATH}:${GEM_PATH}/bin"
 start() { 
     # Start our daemon
     echo -n "Starting webhook: "
-    thin start --environment production --port ${WEBHOOK_PORT} -P ${WEBHOOK_PID}  -l ${WEBHOOK_LOG} -c ${WEBHOOK_HOME} -d -
+    thin start --environment production --port ${WEBHOOK_PORT} -P ${WEBHOOK_PID}  -l ${WEBHOOK_LOG} -c ${WEBHOOK_HOME} -d -q 
     RETVAL=$?
 
     #If all is well touch the lock file

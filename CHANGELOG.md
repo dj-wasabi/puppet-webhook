@@ -2,6 +2,12 @@
 
 Below an overview of all changes in the releases.
 
+# lots of stuff
+
+0.0.4 
+
+ * Bug with init script, osfamily
+
 Version (Release date)
 
 0.0.3   (2014-08-28)
@@ -14,5 +20,5 @@ Version (Release date)
   * Added correct init script for debian/ubuntu systems.
 
 0.0.1  (2014-08-01)
- 
+
   * Initial working version.

@@ -61,6 +61,8 @@ class webhook (
   $ruby_dev        = $webhook::params::ruby_dev,
 ) inherits webhook::params {
 
+  $osfamily = inline_template('<%= osfamily.downcase %>')
+
   exec { 'create_webhook_homedir':
     command => "mkdir -p ${webhook_home}",
     path    => '/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin',
@@ -117,7 +119,7 @@ class webhook (
   file { '/etc/init.d/webhook':
     ensure  => present,
     mode    => '0775',
-    content => template("webhook/service.${::osfamily}.erb"),
+    content => template("webhook/service.${osfamily}.erb"),
   }
 
   if ! defined(Package[$ruby_dev]) {
