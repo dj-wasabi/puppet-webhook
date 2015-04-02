@@ -35,11 +35,11 @@ end
 
 # Some defines.
 def deployEnv(branchname,cmd_obj)
-  deployCmd = "#{cmd_obj['r10k_cmd']} #{branchname} -pv"
+  deployCmd = "#{cmd_obj['r10k_cmd']} deploy #{branchname} -pv"
   `#{deployCmd}`
 end
 
 def deployModule(modulename,cmd_obj)
-  deployCmd = "#{cmd_obj['r10k_cmd']} module #{modulename} -pv"
+  deployCmd = "#{cmd_obj['r10k_cmd']} deploy module #{modulename} -pv"
   `#{deployCmd}`
 end
