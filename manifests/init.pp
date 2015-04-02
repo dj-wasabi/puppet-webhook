@@ -78,6 +78,16 @@ class webhook (
     require => Exec['create_webhook_homedir'],
   }
 
+  file { "${webhook_home}/webhook_config.json":
+    ensure  => present,
+    owner   => $webhook_owner,
+    group   => $webhook_group,
+    mode    => '0644',
+    source  => 'puppet:///modules/webhook/webhook_config.json',
+    require => Exec['create_webhook_homedir'],
+    notify  => Service['webhook'],
+  }
+
   file { "${webhook_home}/Gemfile":
     ensure  => present,
     owner   => $webhook_owner,
