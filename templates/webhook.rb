@@ -35,7 +35,7 @@ end
 
 # Some defines.
 def deployEnv(branchname,cmd_obj)
-  deployCmd = "#{cmd_obj['r10k_cmd']} deploy #{branchname} -pv"
+  deployCmd = "#{cmd_obj['r10k_cmd']} deploy environment #{branchname} -pv"
   logger.info("Now running #{deployCmd}")
   `#{deployCmd}`
 end
