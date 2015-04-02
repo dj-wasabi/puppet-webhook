@@ -1,0 +1,3 @@
+{ 
+  "r10k_cmd": "/usr/bin/r10k environment -pv"
+}
