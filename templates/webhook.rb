@@ -23,7 +23,7 @@ post '/payload' do
   logger.info("branch = #{branchName}")
 
   # Check if repo_name is 'puppetfile'
-  if repo_name == repo_puppetfile <% if @repo_hieradata %>|| #{repo_name} == #{repo_hieradata}<% end %>
+  if repo_name == repo_puppetfile <% if @repo_hieradata %>|| repo_name == repo_hieradata <% end %>
     logger.info("Deploy r10k for this environment #{branchName}")
     deployEnv(branchName,webhook_config_obj)
   else
@@ -51,7 +51,7 @@ end
 def deployModule(modulename,cmd_obj)
   if cmd_obj['mco'] # Check to see if we are using mco
     if cmd_obj['mco_user'] # run it as a mco user if specified
-      deployCmd = "/bin/su #{cmd_obj['mco_user']} -c '#{cmd_obj['mco_cmd']} deploy #{modulename}'"
+      deployCmd = "/bin/su #{cmd_obj['mco_user']} -c '#{cmd_obj['mco_cmd']} deploy_module #{modulename}'"
     else
       deployCmd = "#{cmd_obj['mco_user']} #{cmd_obj['mco_cmd']} deploy_module #{modulename}"
     end
