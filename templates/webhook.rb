@@ -57,7 +57,7 @@ def deployModule(modulename,cmd_obj)
       deployCmd = "#{cmd_obj['mco_user']} #{cmd_obj['mco_cmd']} deploy_module #{modulename}"
     end
   else # use defaults
-    deployCmd = "#{cmd_obj['r10k_cmd']} deploy module #{modulename} -pv"
+    deployCmd = "#{cmd_obj['r10k_cmd']} deploy module #{modulename} -v"
   end
   logger.info("Now running #{deployCmd}")
   `#{deployCmd}`
