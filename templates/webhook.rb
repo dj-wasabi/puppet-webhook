@@ -40,6 +40,7 @@ def deployEnv(branchname,cmd_obj)
       deployCmd = "/bin/su #{cmd_obj['mco_user']} '#{cmd_obj['mco_cmd']} deploy #{branchname}'"
     else # if we are running mco as root
       deployCmd = "#{cmd_obj['mco_user']} #{cmd_obj['mco_cmd']} deploy #{branchname}"
+    end
   else # use deefaults
     deployCmd = "#{cmd_obj['r10k_cmd']} deploy environment #{branchname} -pv"
   end
@@ -53,6 +54,7 @@ def deployModule(modulename,cmd_obj)
       deployCmd = "/bin/su #{cmd_obj['mco_user']} '#{cmd_obj['mco_cmd']} deploy #{modulename}'"
     else
       deployCmd = "#{cmd_obj['mco_user']} #{cmd_obj['mco_cmd']} deploy_module #{modulename}"
+    end
   else # use defaults
     deployCmd = "#{cmd_obj['r10k_cmd']} deploy module #{modulename} -pv"
   end
