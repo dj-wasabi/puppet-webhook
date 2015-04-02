@@ -37,7 +37,7 @@ end
 def deployEnv(branchname,cmd_obj)
   if cmd_obj['mco'] # Check to see if we are using mco
     if cmd_obj['mco_user'] # run it as a mco user if specified
-      deployCmd = "/bin/su #{cmd_obj['mco_user']} '#{cmd_obj['mco_cmd']} deploy #{branchname}'"
+      deployCmd = "/bin/su #{cmd_obj['mco_user']} -c '#{cmd_obj['mco_cmd']} deploy #{branchname}'"
     else # if we are running mco as root
       deployCmd = "#{cmd_obj['mco_user']} #{cmd_obj['mco_cmd']} deploy #{branchname}"
     end
@@ -51,7 +51,7 @@ end
 def deployModule(modulename,cmd_obj)
   if cmd_obj['mco'] # Check to see if we are using mco
     if cmd_obj['mco_user'] # run it as a mco user if specified
-      deployCmd = "/bin/su #{cmd_obj['mco_user']} '#{cmd_obj['mco_cmd']} deploy #{modulename}'"
+      deployCmd = "/bin/su #{cmd_obj['mco_user']} -c '#{cmd_obj['mco_cmd']} deploy #{modulename}'"
     else
       deployCmd = "#{cmd_obj['mco_user']} #{cmd_obj['mco_cmd']} deploy_module #{modulename}"
     end
