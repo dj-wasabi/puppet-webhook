@@ -39,6 +39,7 @@
 # Enables mco. Defaults to false (lowercase). See params.pp for explanation.
 # [*mco_user*]
 # The user being utilized to invoke mco r10k. Defaults to mcollective-user
+#
 # === Example
 #
 #  class { 'webhook':
@@ -89,7 +90,7 @@ class webhook (
     owner   => $webhook_owner,
     group   => $webhook_group,
     mode    => '0644',
-    content => template('webhook/webhook/webhook_config.json.erb'),
+    content => template('webhook/webhook_config.json.erb'),
     require => Exec['create_webhook_homedir'],
     notify  => Service['webhook'],
   }
