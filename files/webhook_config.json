@@ -1,5 +1,5 @@
 { 
-  "r10k_cmd": "/usr/bin/r10k environment",
+  "r10k_cmd": "/usr/bin/r10k",
   "mco": true,
   "mco_cmd": "/usr/bin/mco r10k",
   "mco_user": "mcollective-user"
