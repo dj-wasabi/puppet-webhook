@@ -27,9 +27,10 @@ post '/payload' do
     logger.info("Deploy r10k for this environment #{branchName}")
     deployEnv(branchName,webhook_config_obj)
   else
-    logger.info("Deploy puppet module #{repo_name}")
+    module_name = repo_name.split('-').pop
+    logger.info("Deploy puppet module #{module_name}")
     logger.info("Running for branch #{branchName}")
-    deployModule(repo_name,webhook_config_obj)
+    deployModule(module_name,webhook_config_obj)
   end
 end
 
