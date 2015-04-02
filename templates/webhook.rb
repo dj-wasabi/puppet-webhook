@@ -25,21 +25,21 @@ post '/payload' do
   # Check if repo_name is 'puppetfile'
   if #{repo_name} == #{repo_puppetfile} <% if @repo_hieradata %>|| #{repo_name} == #{repo_hieradata}<% end %>
     logger.info("Deploy r10k for this environment #{branchName}")
-    deployEnv(branchName,webhook_config_obj["r10k_cmd"])
+    deployEnv(branchName,webhook_config_obj)
   else
     logger.info("Deploy puppet module #{repo_name}")
     logger.info("Running for branch #{branchName}")
-    deployModule(repo_name,webhook_config_obj["r10k_cmd"])
+    deployModule(repo_name,webhook_config_obj)
   end
 end
 
 # Some defines.
-def deployEnv(branchname,cmd)
-  deployCmd = "#{cmd} #{branchname}"
+def deployEnv(branchname,cmd_obj)
+  deployCmd = "#{cmd['r10k_cmd']} #{branchname} -pv"
   `#{deployCmd}`
 end
 
-def deployModule(modulename)
-  deployCmd = "#{cmd}_module #{modulename}"
+def deployModule(modulename,cmd_obj)
+  deployCmd = "#{cmd['r10k_cmd']} module #{modulename} -pv"
   `#{deployCmd}`
 end
