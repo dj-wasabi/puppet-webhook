@@ -16,6 +16,8 @@ class webhook::params {
   $port     = '81'
   $owner    = 'root'
   $group    = 'root'
+  $mco      = 'false' # Important, since we are writing to a json file and Json only do lowercase boolean.
+  $mco_user = 'mcollective-user' # the user being utilized to invoke mco r10k
 
   # OS specific stuff
   if $::osfamily == 'RedHat' {

@@ -35,6 +35,10 @@
 # [*ruby_dev*]
 # The package name of ruby-devel (or when debian: ruby-dev)
 #
+# [*mco*]
+# Enables mco. Defaults to false (lowercase). See params.pp for explanation.
+# [*mco_user*]
+# The user being utilized to invoke mco r10k. Defaults to mcollective-user
 # === Example
 #
 #  class { 'webhook':
@@ -56,6 +60,8 @@ class webhook (
   $webhook_port    = $webhook::params::port,
   $webhook_owner   = $webhook::params::owner,
   $webhook_group   = $webhook::params::group,
+  $mco             = $webhook::params::mco,
+  $mco_user        = $webhook::params::mco_user,
   $repo_puppetfile = undef,
   $repo_hieradata  = undef,
   $ruby_dev        = $webhook::params::ruby_dev,
@@ -83,7 +89,7 @@ class webhook (
     owner   => $webhook_owner,
     group   => $webhook_group,
     mode    => '0644',
-    source  => 'puppet:///modules/webhook/webhook_config.json',
+    content => template('webhook/webhook/webhook_config.json.erb'),
     require => Exec['create_webhook_homedir'],
     notify  => Service['webhook'],
   }
