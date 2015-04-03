@@ -1,0 +1,6 @@
+{ 
+  "r10k_cmd": "/usr/bin/r10k",
+  "mco": false,
+  "mco_cmd": "/usr/bin/mco r10k",
+  "mco_user": "mcollective-user"
+}
