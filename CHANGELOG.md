@@ -4,9 +4,11 @@ Below an overview of all changes in the releases.
 
 # lots of stuff
 
-0.0.4 
+0.1.0 
 
  * Bug with init script, osfamily
+ * Added MCO Support, fixed a number of bugs #4 (By pull request: rilindo (Thanks!))
+ * Fix os family init scope #3 (By pull request: rilindo (Thanks!))
 
 Version (Release date)
 
